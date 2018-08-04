@@ -12,13 +12,13 @@ class Vending
             end
         }
         if prod_price == 0 then
-            p "その商品はありません。"
+            return false
         else
             if prod_price > money then
-                p "金額が不足しています。"
+                return false
             else 
                 change = money - prod_price
-                p prod_name + "を購入しました。おつりは" + change.to_s + "円です。"
+                return prod_name, change
             end
         end
     end
@@ -37,7 +37,17 @@ products.push(Product.new("aa", 10))
 products.push(Product.new("bb", 20))
 
 vending = Vending.new(products)
-vending.buy("aa",100)
-vending.buy("bb",100)
-vending.buy("bb",1)
-vending.buy("cc",100)
+if vending.buy("aa",100) then
+    prod_name, change = vending.buy("aa",100)
+    p prod_name + "を購入しました。おつりは" + change.to_s + "円です。"
+else
+    p "買えませんでした。"
+end
+
+if vending.buy("bb",1) then
+    prod_name, change = vending.buy("bb",1)
+    p prod_name + "を購入しました。おつりは" + change.to_s + "円です。"
+else
+    p "買えませんでした。"
+end
+
