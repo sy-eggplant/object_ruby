@@ -1,7 +1,6 @@
 require File.expand_path('../vending.rb', __FILE__)
 
-products = []
-vending = Vending.new(products)
+vending = Vending.new()
 vending.add(Product.new("aa", 10))
 
 if vending.buy("aa",100) then

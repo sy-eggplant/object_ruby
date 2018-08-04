@@ -1,6 +1,6 @@
 class Vending
     attr_reader :products
-    def initialize(products)
+    def initialize(products = [])
         @products = products
     end 
     def add(product)
