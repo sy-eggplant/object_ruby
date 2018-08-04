@@ -8,21 +8,17 @@ class Vending
     end
 
     def buy(prod_name, money)
-        prod_price = 0
+        prod_price = -1
         products.each { |product|
             if product.name == prod_name then
                 prod_price = product.price
             end
         }
-        if prod_price == 0 then
-            return false
+        if prod_price != -1 and prod_price <= money  then
+            change = money - prod_price
+            return prod_name, change
         else
-            if prod_price > money then
-                return false
-            else 
-                change = money - prod_price
-                return prod_name, change
-            end
+            return false
         end
     end
 end
