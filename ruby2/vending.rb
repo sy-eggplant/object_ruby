@@ -3,6 +3,9 @@ class Vending
     def initialize(products)
         @products = products
     end 
+    def add(product)
+        products.push(product)
+    end
 
     def buy(prod_name, money)
         prod_price = 0
@@ -33,10 +36,9 @@ class Product
 end
 
 products = []
-products.push(Product.new("aa", 10))
-products.push(Product.new("bb", 20))
-
 vending = Vending.new(products)
+vending.add(Product.new("aa", 10))
+
 if vending.buy("aa",100) then
     prod_name, change = vending.buy("aa",100)
     p prod_name + "を購入しました。おつりは" + change.to_s + "円です。"
@@ -44,10 +46,18 @@ else
     p "買えませんでした。"
 end
 
-if vending.buy("bb",1) then
-    prod_name, change = vending.buy("bb",1)
+if vending.buy("bb",100) then
+    prod_name, change = vending.buy("bb",100)
     p prod_name + "を購入しました。おつりは" + change.to_s + "円です。"
 else
     p "買えませんでした。"
 end
 
+vending.add(Product.new("bb", 10))
+
+if vending.buy("bb",100) then
+    prod_name, change = vending.buy("bb",100)
+    p prod_name + "を購入しました。おつりは" + change.to_s + "円です。"
+else
+    p "買えませんでした。"
+end
